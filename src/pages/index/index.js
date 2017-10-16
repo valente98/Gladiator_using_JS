@@ -1,6 +1,7 @@
 const $ = require('jquery');
 const other = require('../../lib/other');
-
+// str, int, int, int,int -> NoneType
+// creates a new Gladiator
 function gladiator(name, health, rage, high_damage, low_damage) {
     var gladiator = {};
     gladiator.name = name;
@@ -10,6 +11,9 @@ function gladiator(name, health, rage, high_damage, low_damage) {
     gladiator.low_damage = low_damage;
     return gladiator;
 }
+
+// (gladiator)-> str
+// Return the information about the gladiators
 function gladiator(gladiator) {
     return (
         '<li>' +
@@ -25,9 +29,14 @@ function gladiator(gladiator) {
         '</li>'
     );
 }
+
+// int, int -> int
+// return the randint of the gladiators low and
+// high damage
 function randInt(lo, hi) {
     return lo + Math.floor(Math.random() * (hi - lo));
 }
+function attack(self, other) {}
 
 function main() {}
 $(main);
