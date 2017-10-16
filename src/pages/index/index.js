@@ -70,5 +70,8 @@ function is_dead(gladiator) {
     }
 }
 
-function main() {}
+function main() {
+    var player_1 = gladiator($('#Gladiator-one-input'), 200, 0, 20, 12);
+    var player_2 = gladiator($('#Gladiator-two-input'), 200, 0, 20, 12);
+}
 $(main);
