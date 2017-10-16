@@ -36,7 +36,20 @@ function gladiator(gladiator) {
 function randInt(lo, hi) {
     return lo + Math.floor(Math.random() * (hi - lo));
 }
-function attack(self, other) {}
+
+//this function is to attack the other gladiator
+// gladiator, other -> Nonetype
+// updates the gladiators after one of the gladiators attack
+function attack(gladiator, other) {
+    var damage_dealt = randInt(gladiator.low_damage, gladiator.high_damage);
+    if (randInt(1, 100) <= gladiator.rage) {
+        other.health -= 2 * damage_dealt;
+        gladiator.rage = 0;
+    } else {
+        other.health -= damage_dealt;
+        gladiator.rage += 15;
+    }
+}
 
 function main() {}
 $(main);
