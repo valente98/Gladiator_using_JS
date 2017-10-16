@@ -1,5 +1,5 @@
 const $ = require('jquery');
-const other = require('../../lib/other');
+const appRoot = $('#app');
 // str, int, int, int,int -> NoneType
 // creates a new Gladiator
 function gladiator(name, health, rage, high_damage, low_damage) {
@@ -28,6 +28,11 @@ function gladiator(gladiator) {
         gladiator.high_damage +
         '</li>'
     );
+}
+//This function will show the user the gladiator info
+function showgladiator1(gladiator) {
+    var h = gladiator(gladiator);
+    $('#gladiator-one-info').html(h);
 }
 
 // int, int -> int
