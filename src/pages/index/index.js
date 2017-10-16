@@ -51,5 +51,15 @@ function attack(gladiator, other) {
     }
 }
 
+// this function is to heal if the user wants their gladiator to heal
+// (gladiator) -> Nonetype
+// updates the gladiators healthe when the user wants their gladiator to heal
+function heal(gladiator) {
+    if (gladiator.rage >= 10) {
+        gladiator.rage = (gladiator.rage - 10, 0);
+        gladiator.health = (gladiator.health + 5, 200);
+    }
+}
+
 function main() {}
 $(main);
