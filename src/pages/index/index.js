@@ -56,8 +56,17 @@ function attack(gladiator, other) {
 // updates the gladiators healthe when the user wants their gladiator to heal
 function heal(gladiator) {
     if (gladiator.rage >= 10) {
-        gladiator.rage = (gladiator.rage - 10, 0);
-        gladiator.health = (gladiator.health + 5, 200);
+        gladiator.rage = Math.max(gladiator.rage - 10, 0);
+        gladiator.health = Math.min(gladiator.health + 5, 200);
+    }
+}
+
+// this function checks if the gladiator is dead
+function is_dead(gladiator) {
+    if (gladiator.health <= 0) {
+        return true;
+    } else {
+        return false;
     }
 }
 
