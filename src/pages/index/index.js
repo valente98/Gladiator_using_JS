@@ -82,6 +82,10 @@ function is_dead(gladiator) {
         return false;
     }
 }
+//this function add 30 points to the gladiator rage if the pass thier turn
+function pass(gladiator) {
+    gladiator.rage += 30;
+}
 
 // shows the choice the user can choose
 function view() {
@@ -99,10 +103,6 @@ function attachhandlers() {
     });
     $('#attack').click(function() {
         attack(gladiator, other);
-        draw();
-    });
-    $('#quit').click(function() {
-        quit();
         draw();
     });
     $('#pass').click(function() {
