@@ -2,14 +2,12 @@ const $ = require('jquery');
 const appRoot = $('#app');
 // str, int, int, int,int -> NoneType
 // creates a new Gladiator
-function gladiator(name, health, rage, high_damage, low_damage) {
-    var gladiator = {};
-    gladiator.name = name;
-    gladiator.health = health;
-    gladiator.rage = rage;
-    gladiator.high_damage = high_damage;
-    gladiator.low_damage = low_damage;
-    return gladiator;
+function gladiatormaker(name) {
+    this.name = name;
+    this.health = health;
+    this.rage = rage;
+    this.low_damage = randInt(1, 25);
+    this.high_damage = randInt(this.low_damage, 25);
 }
 
 // (gladiator)-> str
@@ -30,14 +28,6 @@ function gladiator(gladiator) {
     );
 }
 //This function will show the user the gladiator info
-function showgladiator1(gladiator) {
-    var h = gladiator(gladiator);
-    $('#gladiator-one-info').html(h);
-}
-function showgladiator2(gladiator) {
-    var h = gladiator(gladiator);
-    $('#gladiator-two-info').html(h);
-}
 function showgladiator(gladiator) {
     var h = gladiator(gladiator);
     $('#war').html(h);
@@ -92,17 +82,17 @@ function view() {
     return [
         '<div><button id="attack">Attack</button></div>',
         '<br><div><button id="heal">Heal</button></div>',
-        '<br><div><button id="quit">Quit</button></div>',
         '<br><div><button id="pass">Pass</button></div>'
     ].join('');
 }
 function attachhandlers() {
     $('#heal').click(function() {
-        heal(gladiator);
+        heal();
         draw();
     });
     $('#attack').click(function() {
-        attack(gladiator, other);
+        attack();
+        is_dead();
         draw();
     });
     $('#pass').click(function() {
@@ -116,12 +106,14 @@ function draw() {
 }
 
 function main() {
-    var player_1 = gladiator($('#Gladiator-one-input'), 200, 0, 20, 12);
-    var player_2 = gladiator($('#Gladiator-two-input'), 200, 0, 20, 12);
-    showgladiator1(player_1);
-    showgladiator2(player_2);
+    $('#glad-input').click(function() {
+        var player_1 = new gladiatormaker($('#Gladiator-two-input').val());
+        var player_2 = new gladiatormaker($('#Gladiator-one-input').val());
+    });
     while (true) {
         showgladiator(player_1);
+        draw();
+        showgladiator(player_2);
         draw();
     }
 }
