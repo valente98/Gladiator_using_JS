@@ -1,18 +1,53 @@
 const $ = require('jquery');
 const appRoot = $('#app');
+// int, int -> int
+// return the randint of the gladiators low and
+// high damage
+function randInt(lo, hi) {
+    return lo + Math.floor(Math.random() * (hi - lo));
+}
+
 // str, int, int, int,int -> NoneType
 // creates a new Gladiator
-function gladiatormaker(name) {
+function gladiatormaker(name, health, rage, lo, hi) {
     this.name = name;
     this.health = health;
     this.rage = rage;
-    this.low_damage = randInt(1, 25);
-    this.high_damage = randInt(this.low_damage, 25);
+    this.lo = lo;
+    this.hi = hi;
+
+    this.attack = function attack(other) {
+        var damage_dealt = randInt(this.low_damage, this.high_damage);
+        if (randInt(1, 100) <= this.rage) {
+            other.health -= 2 * damage_dealt;
+            this.rage = 0;
+        } else {
+            other.health -= damage_dealt;
+            this.rage += 15;
+        }
+    };
+
+    this.heal = function heal() {
+        if (this.rage >= 10) {
+            this.rage = Math.max(this.rage - 10, 0);
+            this.health = Math.min(this.health + 5, 200);
+        }
+    };
+    this.pass = function pass() {
+        this.rage += 30;
+    };
+    this.is_dead = function is_dead() {
+        if (this.health <= 0) {
+            return true;
+        } else {
+            return false;
+        }
+    };
 }
 
 // (gladiator)-> str
 // Return the information about the gladiators
-function gladiator(gladiator) {
+function gladiatorinfo(gladiator) {
     return (
         '<li>' +
         gladiator.name +
@@ -29,52 +64,19 @@ function gladiator(gladiator) {
 }
 //This function will show the user the gladiator info
 function showgladiator(gladiator) {
-    var h = gladiator(gladiator);
-    $('#war').html(h);
+    var h = gladiatorinfo(gladiator);
+    $('#War').html(h);
 }
 
-// int, int -> int
-// return the randint of the gladiators low and
-// high damage
-function randInt(lo, hi) {
-    return lo + Math.floor(Math.random() * (hi - lo));
+function attacker(gladiator, other) {
+    gladiator.attack(other);
+    other.is_dead();
 }
-
-//this function is to attack the other gladiator
-// gladiator, other -> Nonetype
-// updates the gladiators after one of the gladiators attack
-function attack(gladiator, other) {
-    var damage_dealt = randInt(gladiator.low_damage, gladiator.high_damage);
-    if (randInt(1, 100) <= gladiator.rage) {
-        other.health -= 2 * damage_dealt;
-        gladiator.rage = 0;
-    } else {
-        other.health -= damage_dealt;
-        gladiator.rage += 15;
-    }
-}
-
-// this function is to heal if the user wants their gladiator to heal
-// (gladiator) -> Nonetype
-// updates the gladiators healthe when the user wants their gladiator to heal
 function heal(gladiator) {
-    if (gladiator.rage >= 10) {
-        gladiator.rage = Math.max(gladiator.rage - 10, 0);
-        gladiator.health = Math.min(gladiator.health + 5, 200);
-    }
+    gladiator.heal();
 }
-
-// this function checks if the gladiator is dead
-function is_dead(gladiator) {
-    if (gladiator.health <= 0) {
-        return true;
-    } else {
-        return false;
-    }
-}
-//this function add 30 points to the gladiator rage if the pass thier turn
 function pass(gladiator) {
-    gladiator.rage += 30;
+    gladiator.pass();
 }
 
 // shows the choice the user can choose
@@ -91,7 +93,7 @@ function attachhandlers() {
         draw();
     });
     $('#attack').click(function() {
-        attack();
+        attacker();
         is_dead();
         draw();
     });
@@ -107,14 +109,21 @@ function draw() {
 
 function main() {
     $('#glad-input').click(function() {
-        var player_1 = new gladiatormaker($('#Gladiator-two-input').val());
-        var player_2 = new gladiatormaker($('#Gladiator-one-input').val());
+        var player_1 = new gladiatormaker(
+            $('#Gladiator-two-input').val(),
+            200,
+            0,
+            12,
+            20
+        );
+        var player_2 = new gladiatormaker(
+            $('#Gladiator-one-input').val(),
+            200,
+            0,
+            5,
+            30
+        );
     });
-    while (true) {
-        showgladiator(player_1);
-        draw();
-        showgladiator(player_2);
-        draw();
-    }
+    draw();
 }
 $(main);
