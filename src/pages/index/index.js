@@ -44,7 +44,15 @@ function gladiatormaker(name, health, rage, lo, hi) {
         }
     };
 }
+//This show the users who the winner is.
+function winner(gladiator) {
+    return '<h2>' + gladiator.name + ' is the Winner!! CONGRATULATIONS';
+}
 
+function showwinner(gladiator) {
+    var h = winner(gladiator);
+    $('#winner').html(h);
+}
 // (gladiator)-> str
 // Return the information about the gladiators
 function viewGladiator(gladiator) {
@@ -71,6 +79,8 @@ function showgladiator2(gladiator) {
     var h = viewGladiator(gladiator);
     $('#War2').html(h);
 }
+
+//This are the button that the user will use to fight
 function attacker(gladiator, other) {
     gladiator.attack(other);
     other.is_dead();
@@ -104,10 +114,13 @@ function attachhandlers() {
         draw();
     });
 }
+
 function draw() {
     appRoot.html(view());
     attachhandlers();
 }
+
+// This creates the gladiaters
 const STATE = {
     player_1: new gladiatormaker(
         $('#Gladiator-one-input').val(),
