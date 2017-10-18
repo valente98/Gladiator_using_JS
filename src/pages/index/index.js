@@ -109,13 +109,6 @@ function draw() {
     attachhandlers();
 }
 const STATE = {
-    player_2: new gladiatormaker(
-        $('#Gladiator-two-input').val(),
-        200,
-        0,
-        12,
-        20
-    ),
     player_1: new gladiatormaker(
         $('#Gladiator-one-input').val(),
         200,
@@ -123,11 +116,20 @@ const STATE = {
         5,
         30
     ),
+    player_2: new gladiatormaker(
+        $('#Gladiator-two-input').val(),
+        200,
+        0,
+        12,
+        20
+    ),
 
     turn: 1
 };
 function main() {
     $('#glad-input').click(function() {
+        STATE.player_1.name = $('#Gladiator-one-input').val();
+        STATE.player_2.name = $('#Gladiator-two-input').val();
         showgladiator1(STATE.player_1);
         showgladiator2(STATE.player_2);
         draw();
