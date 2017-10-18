@@ -17,7 +17,7 @@ function gladiatormaker(name, health, rage, lo, hi) {
     this.hi = hi;
 
     this.attack = function attack(other) {
-        var damage_dealt = randInt(this.low_damage, this.high_damage);
+        var damage_dealt = randInt(this.lo, this.hi);
         if (randInt(1, 100) <= this.rage) {
             other.health -= 2 * damage_dealt;
             this.rage = 0;
@@ -36,15 +36,16 @@ function gladiatormaker(name, health, rage, lo, hi) {
     this.pass = function pass() {
         this.rage += 30;
     };
-    this.is_dead = function is_dead() {
+    this.is_dead = function is_dead(other) {
         if (this.health <= 0) {
+            this.health = Math.max(0);
             showwinner(other.name);
         }
     };
 }
 //This show the users who the winner is.
 function winner(gladiator) {
-    return '<h2>' + gladiator.name + ' is the Winner!! CONGRATULATIONS';
+    return '<h2>' + gladiator + ' is the Winner!! CONGRATULATIONS';
 }
 
 function showwinner(gladiator) {
@@ -78,18 +79,6 @@ function showgladiator2(gladiator) {
     $('#War2').html(h);
 }
 
-//This are the button that the user will use to fight
-// function attacker(gladiator, other) {
-//     gladiator.attack(other);
-//     other.is_dead();
-// }
-// function heal(gladiator) {
-//     gladiator.heal();
-// }
-// function pass(gladiator) {
-//     gladiator.pass();
-// }
-
 // shows the choice the user what they can choose to do
 function view() {
     return [
@@ -98,29 +87,30 @@ function view() {
         '<br><div><button id="pass">Pass</button></div>'
     ].join('');
 }
-function attachhandlers(player, other) {
+function attachhandlers() {
     $('#heal').click(function() {
-        player.heal;
+        whosturn().heal();
         opponentturn();
         draw();
     });
     $('#attack').click(function() {
-        player.attack;
-        other.is_dead();
+        whosturn().attack(opponent());
+        opponent().is_dead(whosturn());
         opponentturn();
         draw();
     });
     $('#pass').click(function() {
-        player.pass;
+        whosturn().pass();
         opponentturn();
         draw();
     });
 }
 
 function draw() {
-    var player = whosturn(STATE);
+    showgladiator1(STATE.player_1);
+    showgladiator2(STATE.player_2);
     appRoot.html(view());
-    attachhandlers(player, other);
+    attachhandlers();
 }
 
 function opponentturn() {
@@ -130,7 +120,14 @@ function opponentturn() {
         STATE.turn = 1;
     }
 }
-function whosturn(STATE) {
+function opponent() {
+    if (STATE.turn === 1) {
+        return STATE.player_2;
+    } else {
+        return STATE.player_1;
+    }
+}
+function whosturn() {
     if (STATE.turn === 1) {
         return STATE.player_1;
     } else {
@@ -160,8 +157,6 @@ function main() {
     $('#glad-input').click(function() {
         STATE.player_1.name = $('#Gladiator-one-input').val();
         STATE.player_2.name = $('#Gladiator-two-input').val();
-        showgladiator1(STATE.player_1);
-        showgladiator2(STATE.player_2);
         draw();
     });
 }
