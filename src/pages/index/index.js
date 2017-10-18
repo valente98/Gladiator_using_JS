@@ -38,9 +38,7 @@ function gladiatormaker(name, health, rage, lo, hi) {
     };
     this.is_dead = function is_dead() {
         if (this.health <= 0) {
-            return true;
-        } else {
-            return false;
+            showwinner(other.name);
         }
     };
 }
@@ -81,18 +79,18 @@ function showgladiator2(gladiator) {
 }
 
 //This are the button that the user will use to fight
-function attacker(gladiator, other) {
-    gladiator.attack(other);
-    other.is_dead();
-}
-function heal(gladiator) {
-    gladiator.heal();
-}
-function pass(gladiator) {
-    gladiator.pass();
-}
+// function attacker(gladiator, other) {
+//     gladiator.attack(other);
+//     other.is_dead();
+// }
+// function heal(gladiator) {
+//     gladiator.heal();
+// }
+// function pass(gladiator) {
+//     gladiator.pass();
+// }
 
-// shows the choice the user can choose
+// shows the choice the user what they can choose to do
 function view() {
     return [
         '<div><button id="attack">Attack</button></div>',
@@ -100,26 +98,45 @@ function view() {
         '<br><div><button id="pass">Pass</button></div>'
     ].join('');
 }
-function attachhandlers() {
+function attachhandlers(player, other) {
     $('#heal').click(function() {
-        heal();
+        player.heal;
+        opponentturn();
         draw();
     });
     $('#attack').click(function() {
-        attacker();
+        player.attack;
+        other.is_dead();
+        opponentturn();
         draw();
     });
     $('#pass').click(function() {
-        pass();
+        player.pass;
+        opponentturn();
         draw();
     });
 }
 
 function draw() {
+    var player = whosturn(STATE);
     appRoot.html(view());
-    attachhandlers();
+    attachhandlers(player, other);
 }
 
+function opponentturn() {
+    if (STATE.turn === 1) {
+        STATE.turn = 2;
+    } else {
+        STATE.turn = 1;
+    }
+}
+function whosturn(STATE) {
+    if (STATE.turn === 1) {
+        return STATE.player_1;
+    } else {
+        return STATE.player_2;
+    }
+}
 // This creates the gladiaters
 const STATE = {
     player_1: new gladiatormaker(
