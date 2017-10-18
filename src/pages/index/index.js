@@ -45,7 +45,7 @@ function gladiatormaker(name, health, rage, lo, hi) {
 }
 //This show the users who the winner is.
 function winner(gladiator) {
-    return '<h2>' + gladiator + ' is the Winner!! CONGRATULATIONS';
+    return '<h2>' + gladiator + ' is the Winner!!';
 }
 
 function showwinner(gladiator) {
@@ -82,6 +82,7 @@ function showgladiator2(gladiator) {
 // shows the choice the user what they can choose to do
 function view() {
     return [
+        '<div><h3> Gladiator: ' + whosturn().name + '<h3></div>',
         '<div><button id="attack">Attack</button></div>',
         '<br><div><button id="heal">Heal</button></div>',
         '<br><div><button id="pass">Pass</button></div>'
