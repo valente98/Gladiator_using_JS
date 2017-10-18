@@ -47,27 +47,30 @@ function gladiatormaker(name, health, rage, lo, hi) {
 
 // (gladiator)-> str
 // Return the information about the gladiators
-function gladiatorinfo(gladiator) {
+function viewGladiator(gladiator) {
     return (
         '<li>' +
         gladiator.name +
-        ':' +
+        ' :' +
         gladiator.health +
         ' HP ||| ' +
         gladiator.rage +
         ' Rage ||| Low damage: ' +
-        gladiator.low_damage +
+        gladiator.lo +
         ' ||| High damage: ' +
-        gladiator.high_damage +
+        gladiator.hi +
         '</li>'
     );
 }
 //This function will show the user the gladiator info
-function showgladiator(gladiator) {
-    var h = gladiatorinfo(gladiator);
-    $('#War').html(h);
+function showgladiator1(gladiator) {
+    var h = viewGladiator(gladiator);
+    $('#War1').html(h);
 }
-
+function showgladiator2(gladiator) {
+    var h = viewGladiator(gladiator);
+    $('#War2').html(h);
+}
 function attacker(gladiator, other) {
     gladiator.attack(other);
     other.is_dead();
@@ -94,7 +97,6 @@ function attachhandlers() {
     });
     $('#attack').click(function() {
         attacker();
-        is_dead();
         draw();
     });
     $('#pass').click(function() {
@@ -106,24 +108,29 @@ function draw() {
     appRoot.html(view());
     attachhandlers();
 }
+const STATE = {
+    player_2: new gladiatormaker(
+        $('#Gladiator-two-input').val(),
+        200,
+        0,
+        12,
+        20
+    ),
+    player_1: new gladiatormaker(
+        $('#Gladiator-one-input').val(),
+        200,
+        0,
+        5,
+        30
+    ),
 
+    turn: 1
+};
 function main() {
     $('#glad-input').click(function() {
-        var player_1 = new gladiatormaker(
-            $('#Gladiator-two-input').val(),
-            200,
-            0,
-            12,
-            20
-        );
-        var player_2 = new gladiatormaker(
-            $('#Gladiator-one-input').val(),
-            200,
-            0,
-            5,
-            30
-        );
+        showgladiator1(STATE.player_1);
+        showgladiator2(STATE.player_2);
+        draw();
     });
-    draw();
 }
 $(main);
