@@ -67,6 +67,7 @@ function winner(gladiator) {
 
 function showwinner(gladiator) {
     var h = winner(gladiator);
+
     $('#winner').html(h);
 }
 // (gladiator)-> str
