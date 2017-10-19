@@ -41,8 +41,15 @@ function gladiatormaker(name, health, rage, lo, hi) {
             this.health = Math.max(0);
             showwinner(other.name);
             showGameOver();
+            disable();
         }
     };
+}
+//this disable buttons
+function disable() {
+    $('#attack').prop(disabled, true);
+    $('#heal').prop(disabled, true);
+    $('#pass').prop(disabled, true);
 }
 
 //This allows the user to rematch
@@ -101,6 +108,7 @@ function view() {
 function attachhandlers() {
     $('#heal').click(function() {
         whosturn().heal();
+        opponent().is_dead(whosturn());
         opponentturn();
         draw();
     });
@@ -112,8 +120,12 @@ function attachhandlers() {
     });
     $('#pass').click(function() {
         whosturn().pass();
+        opponent().is_dead(whosturn());
         opponentturn();
         draw();
+    });
+    $('#Rematch').click(function() {
+        Main();
     });
 }
 
