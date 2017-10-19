@@ -40,8 +40,18 @@ function gladiatormaker(name, health, rage, lo, hi) {
         if (this.health <= 0) {
             this.health = Math.max(0);
             showwinner(other.name);
+            showGameOver();
         }
     };
+}
+
+//This allows the user to rematch
+function viewGameOver() {
+    return '<br><div><button id="Rematch">Rematch</button></div>';
+}
+function showGameOver() {
+    var h = viewGameOver();
+    $('#restart').html(h);
 }
 //This show the users who the winner is.
 function winner(gladiator) {
