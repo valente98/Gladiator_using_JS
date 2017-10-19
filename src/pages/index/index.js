@@ -54,7 +54,7 @@ function disable() {
 
 //This allows the user to rematch
 function viewGameOver() {
-    return '<br><div><button id="Rematch">Rematch</button></div>';
+    return '<br><div><button id="Rematch" onclick="document.location.reload()">Rematch</button></div>';
 }
 function showGameOver() {
     var h = viewGameOver();
@@ -123,9 +123,6 @@ function attachhandlers() {
         opponent().is_dead(whosturn());
         opponentturn();
         draw();
-    });
-    $('#Rematch').click(function() {
-        Main();
     });
 }
 
