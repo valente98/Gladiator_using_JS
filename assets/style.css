@@ -6,10 +6,9 @@ body {
     background-size: cover;
     background-repeat: no-repeat;
 }
-#Intro {
+.panel-body {
+    background-color: #4a6262;
     border: 12px;
-    margin: 12px;
-    color: yelow;
 }
 #Gladiator-two-input {
     width: 25%;
