@@ -54,7 +54,7 @@ function disable() {
 
 //This allows the user to rematch
 function viewGameOver() {
-    return '<br><div><button id="Rematch" onclick="document.location.reload()">Rematch</button></div>';
+    return '<br><div><button class="btn" id="Rematch" onclick="document.location.reload()">Rematch</button></div>';
 }
 function showGameOver() {
     var h = viewGameOver();
@@ -67,7 +67,6 @@ function winner(gladiator) {
 
 function showwinner(gladiator) {
     var h = winner(gladiator);
-
     $('#winner').html(h);
 }
 // (gladiator)-> str
@@ -101,9 +100,9 @@ function showgladiator2(gladiator) {
 function view() {
     return [
         '<div><h3> Gladiator: ' + whosturn().name + '<h3></div>',
-        '<div><button id="attack">Attack</button></div>',
-        '<br><div><button id="heal">Heal</button></div>',
-        '<br><div><button id="pass">Pass</button></div>'
+        '<div><button class="btn" id="attack">Attack</button></div>',
+        '<br><div><button class="btn" id="heal">Heal</button></div>',
+        '<br><div><button class="btn" id="pass">Pass</button></div>'
     ].join('');
 }
 function attachhandlers() {
