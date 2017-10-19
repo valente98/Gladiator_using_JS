@@ -1,0 +1,28 @@
+#Gladiator-one-input {
+    width: 25%;
+}
+body {
+    background-image: url(./photos/gladiator.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+#Intro {
+    border: 12px;
+    margin: 12px;
+    color: yelow;
+}
+#Gladiator-two-input {
+    width: 25%;
+}
+
+#War1 {
+    font-size: 25px;
+}
+#War2 {
+    font-size: 25px;
+}
+
+.btn {
+    background-color: #002822;
+    color: white;
+}
