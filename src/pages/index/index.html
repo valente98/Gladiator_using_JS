@@ -5,32 +5,35 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <link href='/assets/default-400e069cb5665dc2c73b4b3e6ed6577f9fca8c57382e329f518abae0a3c70a8e.jpg' />
-    <link rel="stylesheet" href="../../assets/lavish.css" />
     <link rel='stylesheet' href='../../assets/style.css' />
     <title>Gladiator War</title>
 </head>
 <center>
 
     <body>
-        <div id='Intro'>
-            <h1>WELCOME TO GLADIATOR WAR!!</h1>
+        <div class='container'>
+            <div class='panel panel-default'>
+                <div id='Intro'>
+                    <h1>WELCOME TO GLADIATOR WAR!!</h1>
+                </div>
+                <div>
+                    <label for='gladiator_one'>Gladiator One:</label>
+                    <input type='text' id='Gladiator-one-input' name='gladiator-one' class='form-control'>
+                    <br>
+                    <br>
+                    <label for='gladiator-two'>Gladiator Two:</label>
+                    <input type='text' id='Gladiator-two-input' name='gladiator-two' class='form-control'>
+                    <button class="btn" id="glad-input">Fight!</button>
+                </div>
+                <div id="War1"></div>
+                <div id="War2"></div>
+                <div id="app"></div>
+                <div id="winner"></div>
+                <div id="restart"></div>
+                <script src="index.js"></script>
+            </div>
         </div>
-        <div>
-            <label for='gladiator_one'>Gladiator One:</label>
-            <input type='text' id='Gladiator-one-input' name='gladiator-one' class='form-control'>
-            <br>
-            <br>
-            <label for='gladiator-two'>Gladiator Two:</label>
-            <input type='text' id='Gladiator-two-input' name='gladiator-two' class='form-control'>
-            <button class="btn" id="glad-input">Fight!</button>
-        </div>
-        <div id="War1"></div>
-        <div id="War2"></div>
-        <div id="app"></div>
-        <div id="restart"></div>
-        <div id="winner"></div>
-        <script src="index.js"></script>
+
     </body>
 </center>
 
