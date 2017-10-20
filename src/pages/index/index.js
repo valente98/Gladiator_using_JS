@@ -44,12 +44,21 @@ function gladiatormaker(name, health, rage, lo, hi) {
             disable();
         }
     };
+    this.super_heal = function super_heal() {
+        if (this.health <= 200 && this.rage >= 30) {
+            this.health += 20;
+            this.rage -= 30;
+        } else {
+            $('#superheal').prop(disable, true);
+        }
+    };
 }
 //this disable buttons
 function disable() {
     $('#attack').prop(disabled, true);
     $('#heal').prop(disabled, true);
     $('#pass').prop(disabled, true);
+    $('#superheal').prop(disable, true);
 }
 
 //This allows the user to rematch
@@ -100,9 +109,8 @@ function showgladiator2(gladiator) {
 function view() {
     return [
         '<div><h3 id="turn"> Gladiator: ' + whosturn().name + '<h3></div>',
-        '<div><button class="btn" id="attack">Attack</button></div>',
-        '<br><div><button class="btn" id="heal">Heal</button></div>',
-        '<br><div><button class="btn" id="pass">Pass</button></div>'
+        '<div><button class="btn" id="attack">Attack</button><button class="btn" id="heal">Heal</button><button class="btn" id="pass">Pass</button></div>',
+        '<div><button class="btn" id="superheal">Super Heal</button></div>'
     ].join('');
 }
 function attachhandlers() {
@@ -120,6 +128,12 @@ function attachhandlers() {
     });
     $('#pass').click(function() {
         whosturn().pass();
+        opponent().is_dead(whosturn());
+        opponentturn();
+        draw();
+    });
+    $('#superheal').click(function() {
+        whosturn().super_heal();
         opponent().is_dead(whosturn());
         opponentturn();
         draw();
