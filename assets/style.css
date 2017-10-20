@@ -1,4 +1,5 @@
 #Gladiator-one-input {
+    size: 2vh;
     width: 25%;
 }
 body {
@@ -7,11 +8,17 @@ body {
     background-repeat: no-repeat;
 }
 .panel-body {
-    background-color: #5d6666;
-    border: 12px;
+    background-color: skyblue;
+    border: 12%;
 }
 #Gladiator-two-input {
     width: 25%;
+}
+#gladiator {
+    font-size: 3vh;
+}
+#turn {
+    font-size: 4vh;
 }
 
 #War1 {
@@ -24,4 +31,7 @@ body {
 .btn {
     background-color: #002822;
     color: white;
+    height: 50px;
+    width: 100px;
+    font-size: 15px;
 }
