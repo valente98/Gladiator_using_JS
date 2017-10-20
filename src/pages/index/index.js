@@ -99,7 +99,7 @@ function showgladiator2(gladiator) {
 // shows the choice the user what they can choose to do
 function view() {
     return [
-        '<div><h3> Gladiator: ' + whosturn().name + '<h3></div>',
+        '<div><h3 id="turn"> Gladiator: ' + whosturn().name + '<h3></div>',
         '<div><button class="btn" id="attack">Attack</button></div>',
         '<br><div><button class="btn" id="heal">Heal</button></div>',
         '<br><div><button class="btn" id="pass">Pass</button></div>'
