@@ -3,9 +3,11 @@
     width: 25%;
 }
 body {
-    background-image: url(./photos/gladiator.jpg);
+    background: url(./photos/gladiator.jpg) no-repeat center center fixed;
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
     background-size: cover;
-    background-repeat: no-repeat;
 }
 #Intro {
     background-color: red;
